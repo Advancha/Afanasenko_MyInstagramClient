@@ -38,6 +38,7 @@ public class InstagramDialog extends Dialog {
     private LinearLayout mContent;
     private TextView mTitle;
     private static final String TAG = "Instagram-WebView";
+
     public InstagramDialog(Context context, String url,
                            OAuthDialogListener listener) {
         super(context);
