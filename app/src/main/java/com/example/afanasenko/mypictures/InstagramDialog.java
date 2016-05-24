@@ -79,7 +79,8 @@ public class InstagramDialog extends Dialog {
         mWebView.setHorizontalScrollBarEnabled(false);
         mWebView.setWebViewClient(new OAuthWebViewClient());
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.loadUrl(mUrl); mWebView.setLayoutParams(FILL);
+        mWebView.loadUrl(mUrl);
+        mWebView.setLayoutParams(FILL);
         mContent.addView(mWebView);
     }
     private class OAuthWebViewClient extends WebViewClient {
