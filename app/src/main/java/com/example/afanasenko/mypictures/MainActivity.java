@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private HashMap<String, String> userInfoHashmap = new HashMap<String, String>();
     private ArrayList<String> userMedia=new ArrayList<String>();
+    private ArrayList<String> userLinks=new ArrayList<String>();
 
     private Handler handler = new Handler(new Handler.Callback() {
 
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             if (msg.what == InstagramApp.WHAT_FINALIZE) {
                 userInfoHashmap = mApp.getUserInfo();
                 userMedia = mApp.getUserMedia();
+                userLinks = mApp.getUserLinks();
             }
             else if (msg.what == InstagramApp.WHAT_FINALIZE) {
                 Toast.makeText(MainActivity.this, "Check your network.",
@@ -64,6 +66,7 @@ public void onCreate(Bundle savedInstanceState) {
             llAfterLoginView.setVisibility(View.VISIBLE);
             userInfoHashmap = mApp.getUserInfo();
             userMedia = mApp.getUserMedia();
+            userLinks = mApp.getUserLinks();
         }
 
         @Override
@@ -175,6 +178,7 @@ private void displayInfoDialogView() {
     public void onClick_btnGetImages(View view) {
         Intent i=new Intent(this,Media.class);
         i.putStringArrayListExtra("USER_MEDIA", userMedia);
+        i.putStringArrayListExtra("USER_LINKS", userLinks);
         //i.putExtra("USER_MEDIA",userMedia);
         startActivity(i);
     }

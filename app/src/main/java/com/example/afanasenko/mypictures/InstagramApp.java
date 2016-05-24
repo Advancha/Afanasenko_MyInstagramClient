@@ -44,6 +44,7 @@ public class InstagramApp {
 
     private HashMap<String,String> userInfo=new HashMap<String, String>();
     private ArrayList<String> userMedia=new ArrayList<String>();
+    private ArrayList<String> userLinks=new ArrayList<String>();
 
     public static String mCallbackUrl = "";
     private static final String AUTH_URL = "https://api.instagram.com/oauth/authorize/";
@@ -190,11 +191,17 @@ public class InstagramApp {
                     JSONArray jsonArray= jsonObj.getJSONArray("data");
 
                     String link="";
+                    String media="";
 
                     for (int i=0; i<jsonArray.length();i++){
                         link=jsonArray.getJSONObject(i).getString("link");
-                        userMedia.add(link);
-                        Log.i(TAG, "Got media: " +link);
+                        media=jsonArray.getJSONObject(i).getJSONObject("images").getJSONObject("standard_resolution").getString("url");
+
+                        userMedia.add(media);
+                        userLinks.add(link);
+
+                        Log.i(TAG, "Got media: " + media);
+                        Log.i(TAG, "Got link: " +link);
                     }
 
 
@@ -301,5 +308,9 @@ public class InstagramApp {
 
     public ArrayList<String> getUserMedia(){
         return userMedia;
+    }
+
+    public ArrayList<String> getUserLinks(){
+        return userLinks;
     }
 }
